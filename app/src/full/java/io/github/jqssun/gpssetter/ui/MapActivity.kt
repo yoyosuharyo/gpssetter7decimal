@@ -87,7 +87,7 @@ class MapActivity: BaseMapActivity(), OnMapReadyCallback, GoogleMap.OnMapClickLi
             uiSettings.isCompassEnabled = false
             setPadding(0,80,0,0)
             mapType = viewModel.mapType
-            setMapStyle(com.google.android.gms.maps.model.MapStyleOptions.loadRawResourceStyle(this@MapActivity, R.raw.map_style_dark))
+            // peta default Google (terang); tema gelap dimatikan karena tampak hitam
 
 
             val zoom = 12.0f
