@@ -100,7 +100,7 @@ dependencies {
 
     // use microg (apache 2.0) and maplibre (bsd 2-clause)
     fossImplementation 'org.microg.gms:play-services-location:0.3.6.244735'
-    fossImplementation ('org.maplibre.gl:android-sdk:11.8.2') 
+    fossImplementation ('org.maplibre.gl:android-sdk:13.7.1') 
     /* {
         exclude group: 'com.google.android.gms'
     } */
