@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="primary">#7D98B3</color>
+    <!--
+    <color name="primary_dark">#ff24457f</color>
+    <color name="primary_light">#BBDEFB</color>
+    -->
+    <color name="ic_launcher_background">#00897B</color>
+
+    <!-- glassmorphism over the dark map -->
+    <color name="glass_fill">#B315181D</color>
+    <color name="glass_stroke">#26FFFFFF</color>
+    <color name="glass_ink">#E8EBF0</color>
+    <color name="glass_ink_dim">#9AA3B2</color>
+    <color name="glass_dialog_fill">#F2191C22</color>
+
+</resources>
