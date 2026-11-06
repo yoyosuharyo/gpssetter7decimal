@@ -21,4 +21,4 @@ jobs:
           java-version: '17'
           cache: 'gradle'
       - run: chmod +x ./gradlew
-      - run: ./gradlew assembleDebug test --stacktrace
+      - run: ./gradlew assembleDebug test -PupdateRepo=${{ github.repository }} --stacktrace

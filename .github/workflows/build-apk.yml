@@ -21,7 +21,7 @@ jobs:
           cache: 'gradle'
 
       - run: chmod +x ./gradlew
-      - run: ./gradlew assembleDebug --stacktrace
+      - run: ./gradlew assembleDebug -PupdateRepo=${{ github.repository }} --stacktrace
 
       - uses: actions/upload-artifact@v6
         with:

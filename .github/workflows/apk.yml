@@ -58,7 +58,7 @@ jobs:
           echo ${{ secrets.STORE }} | base64 -d > upload.jks
           echo ${{ secrets.LOCAL }} | base64 -d > local.properties
           chmod +x ./gradlew;
-          ./gradlew assembleRelease --stacktrace
+          ./gradlew assembleRelease -PupdateRepo=${{ github.repository }} --stacktrace
           rm upload.jks local.properties
 
       # - name: Upload

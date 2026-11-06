@@ -17,13 +17,16 @@ if (localPropsFile.exists()) localProps.load(new FileInputStream(localPropsFile)
 android {
     compileSdk 37 // libxposed 102 requires it; targetSdk is what changes runtime behaviour
     defaultConfig {
-        applicationId "io.github.varma322.gpssetter"
+        applicationId "io.github.yoyo.gpssetter7desimal"
         minSdk 27
         targetSdk 34
         versionCode 20
         versionName tagName
         // testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "TAG_NAME", "\"${tagName}\"")
+        // Repositori GitHub sumber update dalam aplikasi, format "pemilik/repo".
+        // Diisi otomatis oleh workflow (-PupdateRepo=...); kosong = tidak ada pengecekan update.
+        buildConfigField("String", "UPDATE_REPO", "\"${project.findProperty('updateRepo') ?: ''}\"")
         buildConfigField("String", "ORS_KEY", "\"${localProps.getProperty('ORS_KEY', '')}\"")
     }
     splits {

@@ -12,6 +12,7 @@ import io.github.jqssun.gpssetter.room.AppDatabase
 import io.github.jqssun.gpssetter.room.FavoriteDao
 import io.github.jqssun.gpssetter.update.GitHubService
 import io.github.jqssun.gpssetter.utils.PrefManager
+import io.github.jqssun.gpssetter.BuildConfig
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -24,7 +25,7 @@ object AppModule{
     @Provides
     fun createGitHubService(): Retrofit =
         Retrofit.Builder()
-            .baseUrl("https://api.github.com/repos/varma322/android-gps-setter/")
+            .baseUrl("https://api.github.com/repos/${BuildConfig.UPDATE_REPO}/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 

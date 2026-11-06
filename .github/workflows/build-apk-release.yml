@@ -1,0 +1,44 @@
+# Build APK RELEASE (manual): Actions -> "Build APK Release (manual)" -> Run workflow.
+# Sama seperti rilis resmi (R8 aktif, bukan debug). Kunci tanda tangan dibuat otomatis
+# setiap build, jadi APK lama harus di-uninstall dulu sebelum memasang yang baru.
+name: Build APK Release (manual)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+          cache: 'gradle'
+
+      - name: Buat kunci tanda tangan sementara
+        run: |
+          keytool -genkeypair -keystore upload.jks -alias gpssetter \
+            -keyalg RSA -keysize 2048 -validity 10000 \
+            -storepass gpssetter123 -keypass gpssetter123 \
+            -dname "CN=GPS Setter, O=Personal"
+          {
+            echo "storeFile=upload.jks"
+            echo "keyAlias=gpssetter"
+            echo "keyPassword=gpssetter123"
+            echo "storePassword=gpssetter123"
+          } >> local.properties
+
+      - run: chmod +x ./gradlew
+      - run: ./gradlew assembleRelease -PupdateRepo=${{ github.repository }} --stacktrace
+
+      - uses: actions/upload-artifact@v6
+        with:
+          name: gps-setter-apk-release
+          path: app/build/outputs/apk/**/release/*.apk
+          if-no-files-found: error
