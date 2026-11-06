@@ -107,7 +107,7 @@ dependencies {
     /* {
         exclude group: 'com.google.android.gms'
     } */
-    fullImplementation 'com.google.android.gms:play-services-location:21.0.1'
+    fullImplementation 'com.google.android.gms:play-services-location:21.4.0'
     fullImplementation 'com.google.android.gms:play-services-maps:18.1.0'
 
 
