@@ -27,9 +27,16 @@ object LocationHook {
     @Volatile private var newBearing: Float = -1f
     private val rand: Random = Random()
 
-    // koordinat dibatasi tepat 7 angka di belakang koma (~1 cm)
-    private fun round7(value: Double): Double =
-        java.math.BigDecimal(value).setScale(7, java.math.RoundingMode.HALF_UP).toDouble()
+    // Koordinat selalu tepat 7 angka di belakang koma: dibulatkan ke 7 desimal, dan jika angka
+    // ke-7 bernilai 0 (nol di ujung akan hilang sehingga tampil 5/6 angka) diganti angka acak 1-9.
+    private fun round7(value: Double): Double {
+        var n = Math.round(value * 1e7)
+        if (n % 10L == 0L) {
+            val d = 1 + rand.nextInt(9)
+            n += if (n < 0) -d else d
+        }
+        return n / 1e7
+    }
     private lateinit var module: XposedModule
     private lateinit var settings: Xshare
     @Volatile private var mLastUpdated: Long = 0
